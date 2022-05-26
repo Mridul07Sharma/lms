@@ -4,7 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
-const DB = 'mongodb+srv://Mridul_Sharma:H5IdkcSezOa4D8X0@cluster0.cgzbnpj.mongodb.net/lms?retryWrites=true&w=majority'
+require('dotenv').config()
 const ejsMate = require('ejs-mate')
 const project = require('./models/project');
 const multer = require('multer')
@@ -14,7 +14,7 @@ const ExpressErrors = require('./utils/ExpressErrors')
 const CatchAsync = require('./utils/CatchAsync')
 
 
-mongoose.connect(DB).then(() => {
+mongoose.connect(process.env.DB,{ useNewUrlParser: true , useUnifiedTopology: true,}).then(() => {
     console.log("Database Connected")
 }).catch((err) => {
     console.log('No Connection ' + err)
